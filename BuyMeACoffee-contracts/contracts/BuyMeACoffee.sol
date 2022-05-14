@@ -49,15 +49,16 @@ contract BuyMeACoffee {
         
     }
     address payable newTipAddress = owner;
-    function changeTipAddress(address payable newTipAddressp) public{
-        require(msg.sender==owner);
-        newTipAddress=newTipAddressp;
+    function changeTipAddress(address payable _newTipAddress) public{
+        require(msg.sender==owner,"You do not have permission to change the address");
+        newTipAddress= _newTipAddress;
     }
 
     /**
      * @dev Send balance stored in contract to owner address
      */
     function withdrawTips() public{
+        require(msg.sender ==  newTipAddress, "You don't have permission to access this function");
         newTipAddress.transfer(address(this).balance);
     }
 

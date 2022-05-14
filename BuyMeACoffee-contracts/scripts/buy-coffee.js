@@ -51,8 +51,9 @@ await buyMeACoffee.connect(tipper3).buyCoffee("James","Yo you should check out S
 console.log("== bought coffee ==")
 await printBalances(addresses);
 //Withdraw funds
-await buyMeACoffee.connect(owner).withdrawTips();
-
+await buyMeACoffee.connect(owner).changeTipAddress(tipper.address);
+await buyMeACoffee.connect(tipper).withdrawTips();
+//await buyMeACoffee.connect(tipper).withdrawTips();
 //Check balance after withdrawal
 console.log("== withdrawTips ==");
 await printBalances(addresses);
